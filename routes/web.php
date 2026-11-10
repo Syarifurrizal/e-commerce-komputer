@@ -38,3 +38,6 @@ Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout')
 
 // Route CRUD Produk khusus Admin (kecuali index karena sudah pakai /home)
 Route::resource('products', ProductController::class)->except(['index', 'show']);
+
+//payment
+Route::get('/payment/{id}', [App\Http\Controllers\OrderController::class, 'payment'])->name('payment');

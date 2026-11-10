@@ -16,6 +16,16 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
+    // 1. FUNGSI BARU: Menampilkan halaman payment
+    public function payment($id)
+    {
+        $product = Product::findOrFail($id);
+        
+        // Lempar data produk ke halaman simulasi pembayaran
+        return view('payment', compact('product'));
+    }
+
+    // 2. FUNGSI LAMA: Memproses checkout setelah tombol bayar ditekan
     public function checkout(Request $request)
     {
         // 1. Validasi produk yang diklik
@@ -49,6 +59,6 @@ class OrderController extends Controller
         $product->decrement('stock', 1);
 
         // 6. Kembalikan ke halaman home dengan pesan sukses
-        return redirect()->back()->with('success', 'Berhasil membeli ' . $product->name . '!');
+        return redirect('/')->with('success', 'Berhasil melakukan pembayaran untuk ' . $product->name . '!');
     }
 }

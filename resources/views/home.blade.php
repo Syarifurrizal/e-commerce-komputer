@@ -66,9 +66,7 @@
                     </h5>
                     
                     <!-- Tombol Beli -->
-                    <form action="{{ route('checkout') }}" method="POST" class="w-100">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <form action="{{ route('payment', $product->id) }}" method="GET">
                         <button type="submit" class="btn btn-danger w-100 rounded-pill fw-bold shadow-sm">
                             Beli Sekarang
                         </button>
